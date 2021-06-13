@@ -50,9 +50,9 @@ interface RouterProps {
 
 type Props = ReduxProps & DispatchProps & RouterProps & InjectedIntlProps;
 
-export const extractRefID = (props: RouterProps) => new URLSearchParams(props.location.search).get('refid');
+export const extractPSignUpRefID = (props: RouterProps) => new URLSearchParams(props.location.search).get('refid');
 
-class SignUp extends React.Component<Props> {
+class SignUpPersonalAccount extends React.Component<Props> {
     public readonly state = {
         showModal: false,
         email: '',
@@ -138,8 +138,8 @@ class SignUp extends React.Component<Props> {
             <div className="pg-sign-up-screen">
                 <div className={className}>
                     <SignUpForm
-                        typeOfSignUp="business"
-                        labelSignIn={this.props.intl.formatMessage({ id: 'page.header.signIn'})}
+                        typeOfSignUp="personal"
+                        labelSignIn={this.props.intl.formatMessage({ id: 'page.header.signInPersonalAccount'})}
                         labelSignUp={this.props.intl.formatMessage({ id: 'page.header.signUp'})}
                         emailLabel={this.props.intl.formatMessage({ id: 'page.header.signUp.email'})}
                         passwordLabel={this.props.intl.formatMessage({ id: 'page.header.signUp.password'})}
@@ -152,6 +152,7 @@ class SignUp extends React.Component<Props> {
                         onSignIn={this.handleSignIn}
                         onSignUp={this.handleSignUp}
                         onSignUpPersonalAccount={this.handleSignUpPersonalAccount}
+                        onSignUpBusinessAccount={this.handleSignUpBusinessAccount}
                         email={email}
                         handleChangeEmail={this.handleChangeEmail}
                         password={password}
@@ -368,6 +369,13 @@ class SignUp extends React.Component<Props> {
         this.props.history.push("/signup-personal-account")
     }
 
+
+    private handleSignUpBusinessAccount = () =>{
+ 
+        //go to the business signup page
+        this.props.history.push("/signup")
+    }
+
     private renderModalHeader = () => {
         return (
             <div className="pg-exchange-modal-submit-header">
@@ -465,8 +473,8 @@ const mapDispatchProps: MapDispatchToPropsFunction<DispatchProps, {}> =
     });
 
 // tslint:disable-next-line:no-any
-const SignUpScreen = injectIntl(withRouter(connect(mapStateToProps, mapDispatchProps)(SignUp) as any));
+const SignUpPersonalAccountScreen = injectIntl(withRouter(connect(mapStateToProps, mapDispatchProps)(SignUpPersonalAccount) as any));
 
 export {
-    SignUpScreen,
+    SignUpPersonalAccountScreen,
 };

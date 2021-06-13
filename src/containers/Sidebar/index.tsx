@@ -66,10 +66,16 @@ class SidebarContainer extends React.Component<Props, State> {
 
         return (
             <div className={`pg-sidebar-wrapper ${lightBox} pg-sidebar-wrapper--${isActive ? 'active' : 'hidden'}`}>
+                
+                {/*Profile Link: When Logged in */}
                 {this.renderProfileLink()}
+
+                {/* Main Navigation Links */}
                 <div className="pg-sidebar-wrapper-nav">
                     {pgRoutes(isLoggedIn, isLight).map(this.renderNavItems(address))}
                 </div>
+
+                {/*Language Link*/}
                 <div className="pg-sidebar-wrapper-lng">
                     <div className="btn-group pg-navbar__header-settings__account-dropdown dropdown-toggle dropdown-menu-language-container">
                         <div onClick={this.toggleLanguageMenu} className={languageClassName}>
@@ -80,15 +86,27 @@ class SidebarContainer extends React.Component<Props, State> {
                         {isOpenLanguage ? this.getLanguageMenu() : null}
                     </div>
                 </div>
+
+                {/*Logout Link: When Logged in*/}
                 {this.renderLogout()}
             </div>
         );
     }
 
+
+    /*
+        This is the main navigation method for rendering ..
+        the navigation menu items
+    */
     public renderNavItems = (address: string) => (values: string[], index: number) => {
+        
         const { currentMarket } = this.props;
 
+        console.log("Props: ", this.props);
+
         const [name, url, img] = values;
+
+        console.log("Values:", img)
         const handleLinkChange = () => this.props.toggleSidebar(false);
         const path = url.includes('/trading') && currentMarket ? `/trading/${currentMarket.id}` : url;
         const isActive = (url === '/trading/' && address.includes('/trading')) || address === url;
@@ -108,6 +126,7 @@ class SidebarContainer extends React.Component<Props, State> {
                 </div>
             </Link>
         );
+        
     };
 
     public renderProfileLink = () => {

@@ -3,6 +3,10 @@ export const toggleColorTheme = (value: string) => {
     if (value === 'light') {
         rootElement && rootElement.classList.add('light-mode');
     } else {
-        rootElement && rootElement.classList.remove('light-mode');
+        //force the light mode anyway..
+        //I am forcing the light-mode for this application anyway.
+        //The logo remains unchanged thoug and will need some changes
+        //rootElement && rootElement.classList.remove('light-mode');
+        rootElement.classList.add("light-mode");
     }
 };

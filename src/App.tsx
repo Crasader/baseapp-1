@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactGA from 'react-ga';
 import { IntlProvider } from 'react-intl';
 import { connect, MapStateToProps } from 'react-redux';
-import { Router } from 'react-router';
+import { Router } from 'react-router-dom';// I updated react-router to react-router-dom
 import { Alerts, ErrorWrapper, Footer, Header, Sidebar } from './containers';
 import { RootState } from './modules';
 import { Layout } from './routes';
@@ -47,6 +47,7 @@ class AppLayout extends React.Component<Props, {}, {}> {
         const { lang, messages } = locale;
         return (
             <IntlProvider locale={lang} messages={messages} key={lang}>
+
                 <Router history={history}>
                     <ErrorWrapper>
                         <Header/>
@@ -56,6 +57,11 @@ class AppLayout extends React.Component<Props, {}, {}> {
                         <Footer/>
                     </ErrorWrapper>
                 </Router>
+
+
+                
+
+
             </IntlProvider>
         );
     }

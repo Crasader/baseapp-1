@@ -1,3 +1,8 @@
+/**
+ * All the Routes in this application are defined here. 
+ * 
+ */
+
 import { Loader } from '@openware/components';
 import { History } from 'history';
 import * as React from 'react';
@@ -31,9 +36,11 @@ import {
     ProfileTwoFactorAuthScreen,
     SignInScreen,
     SignUpScreen,
+    SignUpPersonalAccountScreen,
     TradingScreen,
     VerificationScreen,
     WalletsScreen,
+
 } from '../../screens';
 
 interface ReduxProps {
@@ -156,6 +163,7 @@ class LayoutComponent extends React.Component<LayoutProps> {
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/signin" component={SignInScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/accounts/confirmation" component={VerificationScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/signup" component={SignUpScreen} />
+                    <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/signup-personal-account" component={SignUpPersonalAccountScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/forgot_password" component={ForgotPasswordScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/accounts/password_reset" component={ChangeForgottenPasswordScreen} />
                     <PublicRoute loading={userLoading} isLogged={isLoggedIn} path="/email-verification" component={EmailVerificationScreen} />

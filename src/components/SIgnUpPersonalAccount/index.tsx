@@ -14,11 +14,9 @@ export interface SignUpFormProps {
     onSignUp: () => void;
     onSignIn?: () => void;
     onSignUpPersonalAccount?: () => void;
-    onSignUpBusinessAccount?: () => void;
     className?: string;
     image?: string;
     labelSignIn?: string;
-    typeOfSignUp?: string; //the type of registration. Could be 'personal' or 'business'
     labelSignUp?: string;
     emailLabel?: string;
     passwordLabel?: string;
@@ -54,7 +52,7 @@ export interface SignUpFormProps {
     captcha_response: string;
 }
 
-export class SignUpForm extends React.Component<SignUpFormProps> {
+export class SignUpPersonalAccountForm extends React.Component<SignUpFormProps> {
     public render() {
         const {
             email,
@@ -63,7 +61,6 @@ export class SignUpForm extends React.Component<SignUpFormProps> {
             refId,
             //onSignIn,
             onSignUpPersonalAccount,
-            onSignUpBusinessAccount,
             image,
             isLoading,
             labelSignIn,
@@ -103,129 +100,11 @@ export class SignUpForm extends React.Component<SignUpFormProps> {
             </h1>
         ) : null;
 
-
-
-        if(this.props.typeOfSignUp == 'personal'){
-            //show the personal form instead.
-            return (
-                <form>
-
-                            <div style={{ textAlign: 'center'}}>
-                               <h1>Register Account for Individuals</h1>
-                            </div>
-                       <div className="cr-sign-up-form">
-                           
-                    <div className="cr-sign-up-form__options-group">
-                        <div className="cr-sign-up-form__option">
-                            {/*<div className="cr-sign-up-form__option-inner cr-sign-in-form__tab-signin" onClick={onSignIn}>
-                                {labelSignIn ? 'Personal Account' : 'Personal Account'}
-                            </div>*/}
-
-                            <div className="cr-sign-up-form__option-inner __selected" onClick={onSignUpPersonalAccount}>
-                                {labelSignIn ? 'Personal Account' : 'Personal Account'}
-                            </div>
-
-                        </div>
-                        <div className="cr-sign-up-form__option">
-                            <div className="cr-sign-up-form__option-inner" onClick={onSignUpBusinessAccount}>
-                                {labelSignUp ? 'Business Account' : 'Business Account'}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="cr-sign-up-form__form-content">
-                        {logo}
-                        <div className={emailGroupClass}>
-                            <CustomInput
-                                type="email"
-                                label={emailLabel || 'Email'}
-                                placeholder={emailLabel || 'Email'}
-                                defaultLabel="Email"
-                                handleChangeInput={this.props.handleChangeEmail}
-                                inputValue={email}
-                                handleFocusInput={this.props.handleFocusEmail}
-                                classNameLabel="cr-sign-up-form__label"
-                                classNameInput="cr-sign-up-form__input"
-                                autoFocus={true}
-                            />
-                            {emailError && <div className="cr-sign-up-form__error">{emailError}</div>}
-                        </div>
-                        <div className={passwordGroupClass}>
-                            <CustomInput
-                                type="password"
-                                label={passwordLabel || 'Password'}
-                                placeholder={passwordLabel || 'Password'}
-                                defaultLabel="Password"
-                                handleChangeInput={this.props.handleChangePassword}
-                                inputValue={password}
-                                handleFocusInput={this.props.handleFocusPassword}
-                                classNameLabel="cr-sign-up-form__label"
-                                classNameInput="cr-sign-up-form__input"
-                                autoFocus={false}
-                            />
-                            {passwordError && <div className={'cr-sign-up-form__error'}>{passwordError}</div>}
-                        </div>
-                        <div className={confirmPasswordGroupClass}>
-                            <CustomInput
-                                type="password"
-                                label={confirmPasswordLabel || 'Confirm Password'}
-                                placeholder={confirmPasswordLabel || 'Confirm Password'}
-                                defaultLabel="Confirm Password"
-                                handleChangeInput={this.props.handleChangeConfirmPassword}
-                                inputValue={confirmPassword}
-                                handleFocusInput={this.props.handleFocusConfirmPassword}
-                                classNameLabel="cr-sign-up-form__label"
-                                classNameInput="cr-sign-up-form__input"
-                                autoFocus={false}
-                            />
-                            {confirmationError && <div className={'cr-sign-up-form__error'}>{confirmationError}</div>}
-                        </div>
-                        <div className={refIdGroupClass}>
-                            <CustomInput
-                                type="text"
-                                label={referalCodeLabel || 'Referral code'}
-                                placeholder={referalCodeLabel || 'Referral code'}
-                                defaultLabel="Referral code"
-                                handleChangeInput={this.props.handleChangeRefId}
-                                inputValue={refId}
-                                handleFocusInput={this.props.handleFocusRefId}
-                                classNameLabel="cr-sign-up-form__label"
-                                classNameInput="cr-sign-up-form__input"
-                                autoFocus={false}
-                            />
-                        </div>
-                        <Checkbox
-                            checked={hasConfirmed}
-                            className="cr-sign-up-form__checkbox"
-                            onChange={this.props.clickCheckBox}
-                            label={termsMessage ? termsMessage : 'I  agree all statements in terms of service'}
-                        />
-                        {this.props.renderCaptcha}
-                        <div className="cr-sign-up-form__button-wrapper">
-                            <Button
-                                type="submit"
-                                className="cr-sign-up-form__button"
-                                label={isLoading ? 'Loading...' : (labelSignUp ? 'Create Personal Account' : 'Sign up')}
-                                disabled={this.disableButton()}
-                                onClick={this.handleClick}
-                            />
-                             <div style={{ alignItems: 'center', textAlign: 'center'}}>
-                                <h3>Already have an account. <Link to="signin">Sign in.</Link></h3>
-                            </div>
-                        </div>
-
-                       
-                    </div>
-                </div>
-            </form>
-        );
-        }
-
-        //Else, Show the business form instead
         return (
                 <form>
 
                             <div style={{ textAlign: 'center'}}>
-                               <h1>Register Account for Business</h1>
+                               <h1>Register Account</h1>
                             </div>
                        <div className="cr-sign-up-form">
                            

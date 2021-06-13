@@ -2,6 +2,7 @@ import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { BrowserView, MobileView } from 'react-device-detect';
 import {
     Market,
     RootState,
@@ -49,23 +50,73 @@ class Head extends React.Component<any> {
             {!['/confirm'].some(r => location.pathname.includes(r)) &&
                 <header className={`pg-header`}>
                     <div className={`pg-container pg-header__content ${tradingCls}`}>
+                        
+                        {/*Check if this is a mobile view or not
+                            - Show the hamburger toggler if in mobile view.
+                            - 
+                            */
+                        
+                        }
+
+                        <MobileView>
                         <div
-                            className={`pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
+                            className={ `pg-sidebar__toggler ${mobileWallet && 'pg-sidebar__toggler-mobile'}`}
                             onClick={this.openSidebar}
                         >
                             <span className="pg-sidebar__toggler-item"/>
                             <span className="pg-sidebar__toggler-item"/>
                             <span className="pg-sidebar__toggler-item"/>
                         </div>
-                        <Link to={'/wallets'} className="pg-header__logo">
-                            <div className="pg-logo">
+                        </MobileView>
+
+                    
+
+                        
+                        <BrowserView style={{ width: '50%'}}>
+                        <Link to={'/wallets'} className="pg-header__logo" style={{ marginLeft: '-20px', display: 'inline'}}>
+                            
                                 {colorTheme === 'light' ? (
                                     <img src={logoLight} className="pg-logo__img" alt="Logo" />
                                 ) : (
                                     <img src={logo} className="pg-logo__img" alt="Logo" />
                                )}
+                            
+                        </Link>
+                        <Link to={'/merchants'} style={
+                            
+                            {fontWeight: 'bolder', textDecoration: 'none', color: 'inherit', display: 'inline'}
+                            }>
+                            <div className="" style={{ display: 'inline'}}>
+                                Merchants
                             </div>
                         </Link>
+
+                        <Link to={'/merchants'} style={
+                            
+                            {marginLeft: '20px', fontWeight: 'bolder', textDecoration: 'none', color: 'inherit', display: 'inline'}
+                            }>
+                            <div className="" style={{ display: 'inline'}}>
+                                Markets
+                            </div>
+                        </Link>
+
+                        <Link to={'/merchants'} style={
+                            
+                            {marginLeft: '20px', fontWeight: 'bolder', textDecoration: 'none', color: 'inherit', display: 'inline'}
+                            }>
+                            <div className="" style={{ display: 'inline'}}>
+                                Currency Converter
+                            </div>
+                        </Link>
+                        
+                        </BrowserView>
+
+                        
+
+                    
+
+
+                        
                         {this.renderMarketToggler()}
                         <div className="pg-header__location">
                             {mobileWallet ? <span>{mobileWallet}</span> : <span>{location.pathname.split('/')[1]}</span>}

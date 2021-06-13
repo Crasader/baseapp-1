@@ -1,4 +1,4 @@
-export const PG_TITLE_PREFIX = 'Cryptobase';
+export const PG_TITLE_PREFIX = 'Arcex';
 
 export const pgRoutes = (isLoggedIn: boolean, isLight?: boolean): string[][] => {
     const routes = [
@@ -11,6 +11,8 @@ export const pgRoutes = (isLoggedIn: boolean, isLight?: boolean): string[][] => 
         ['page.header.navbar.signIn', '/signin', `signin${isLight ? 'Light' : ''}`],
         ['page.header.signUp', '/signup', `signup${isLight ? 'Light' : ''}`],
         ['page.header.navbar.trade', '/trading/', `trade${isLight ? 'Light' : ''}`],
+        ['Merchants', '/merchants/', `merchants${isLight ? 'Light' : ''}`],//Merchants page will be a list of merchants on the platform
+        ['Currency Converter', '/converter/', `currencyConverter${isLight ? 'Light' : ''}`],//Merchants page will be a list of merchants on the platform
     ];
     return isLoggedIn ? routes : routesUnloggedIn;
 };
